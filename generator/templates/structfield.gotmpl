@@ -8,6 +8,7 @@
   -
 {{- else }}
   {{- .OriginalName }}
+  {{- if and (not .Required) .IsEmptyOmitted }},omitempty{{ end }}
 {{- end }}"
 {{- if .XMLName }} xml:"{{ .XMLName }}"{{ end }}
 {{- if .CustomTag }} {{ .CustomTag }}{{ end }}`

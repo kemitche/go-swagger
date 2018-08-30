@@ -73,7 +73,7 @@ type {{ pascalize .Name }} struct {
   Unique: true{{ end }}{{ if .HasDefault }}
   Default: {{ printf "%#v" .Default }}{{ end }}
   */
-  {{ pascalize .Name }} {{ .GoType }} `json:"{{.Name}}"`
+  {{ pascalize .Name }} {{ .GoType }} `json:"{{.Name}}{{ if and (not .Required) .IsEmptyOmitted }},omitempty{{ end }}"`
   {{ end }}
   {{ if .Schema }}{{ with .Schema }}
   /*{{if .Description }}{{ blockcomment .Description }}{{ end }}{{ if .Maximum }}
